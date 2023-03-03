@@ -1,0 +1,16 @@
+<div class="container" *ngIf="user">
+    <div class="row">
+        <h3 class="title">{{ post.title }}</h3>
+    </div>
+    <div class="row">
+        <div class="post-title">
+            Published by <a [routerLink]="['/user/', user.id]">{{ user.name }}</a>
+        </div>
+    </div>
+    <div class="row">
+        <p>Post body:</p>
+        <p>{{ post.body }}</p>
+    </div>
+    <hr>
+    <div class="row"><a [routerLink]="['']">Back to Home</a></div>
+</div>

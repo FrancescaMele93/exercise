@@ -11,43 +11,27 @@ export class PostService {
 
   constructor(private _http: HttpClient) {}
   
+  // Transform the object received by the API in an object as per our model
+  private _objToPost(obj: Post): PostModel {
+    return new PostModel(obj.body, obj.id, obj.title, obj.userId);
+  }
   
+  // Get single post called by id
+  public getPost(id: number): Observable<PostModel> {
+    return this._http.get<Post>(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    .pipe(map(post => this._objToPost(post)));
+  }
+  
+  // Get list of post in an array
   public getPosts(): Observable<PostModel[]> {
     return this._http
     .get<Post[]>('https://jsonplaceholder.typicode.com/posts')
     .pipe(
       map((posts) =>
-      posts.map((post) => {
-        return this._objToPost(post);
-      }))
-      );
-    }
-    // mergeMap(posts => posts.map(post => this.getUserByPost(post.userId)))
-    private _objToPost(obj: Post): PostModel {
-      return new PostModel(obj.body, obj.id, obj.title, obj.userId);
-    }
-}
-
-/**
- * ngOnInit(): void {
-    this._posts$ = this._postService.getPosts().pipe(
-      map((posts) => {
-        this.posts = posts.slice(0, 10);
-        return this.posts;
-      }),
-      switchMap(post => post.map(post => {
-        console.log(post);
-        return this._userService.getUserByPost(post.userId);
-      })
-      )
-    )
-    .subscribe(
-      (user) => {
-        console.log("user in subscribe: ", user);
-        this.user = user;
-        
-        // return this.posts;
-      }
+        // For every element of the Post array, create an object with the Post model
+        posts.map((post) => {
+          return this._objToPost(post);
+        }))
     );
   }
- */
+}

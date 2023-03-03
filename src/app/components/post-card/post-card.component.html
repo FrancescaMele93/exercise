@@ -1,1 +1,18 @@
-<p>post-card works!</p>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-10 col-md-8 rounded card-box">
+        <div class="row">
+            <div class="post-publisher">Post published by: {{ user.name }} alias <a [routerLink]="['/user/', user.id]">{{ user.username }}</a></div>
+        </div>
+        <div class="row">
+            <div class="post-title"><a [routerLink]="['/post/', post.id]">{{ post.title }}</a></div>
+        </div>
+        <div class="row">
+            <div class="post-body">{{ post.body }}</div>
+        </div>
+        <div class="row">
+            <button class="offset-1 btn btn-primary" (click)="closeCard()">Close</button>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>

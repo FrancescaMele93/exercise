@@ -7,18 +7,28 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { PostComponent } from './components/post/post.component';
 import { PostCardComponent } from './components/post-card/post-card.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { FilterDataPipe } from './pipes/filter-data.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
-    PostCardComponent
+    PostCardComponent,
+    PostDetailComponent,
+    UserDetailComponent,
+    HomepageComponent,
+    FilterDataPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-12 col-md-10 p-4 d-flex justify-content-around">
+      <h1>Hic est index epistularum</h1>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <input class="col-4 col-md-3" type="text" [(ngModel)]="searchedText" placeholder="Search in posts">
+    <div class="col"></div>
+  </div>
+    <!-- Create a PostCardComponent every time the cardIsOpen prop is set to true -->
+  <app-post-card 
+  [post]="cardPost" 
+  [user]="cardUser" 
+  (btnIsClicked)="closeCard()"
+  *ngIf="cardIsOpen"
+  ></app-post-card>
+  <!-- Create a PostComponent for each element in the posts array -->
+  <div *ngFor="let post of posts | filterData: searchedText">
+    <app-post 
+      (squareIsClicked)="openCard($event)"
+      [post]="post"
+      ></app-post>
+  </div>
+</div>
